@@ -1,0 +1,1 @@
+yt-dlp -f best --restrict-filenames -o '%(title)s.%(ext)s' -x --audio-format mp3 
