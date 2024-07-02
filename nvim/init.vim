@@ -11,7 +11,7 @@ set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
-set cc=80                  " set an 80 column border for good coding style
+set cc=120                  " set an 80 column border for good coding style
 filetype plugin indent on   "allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
@@ -26,6 +26,7 @@ hi Normal ctermbg=none
 hi StatusLine ctermbg=Blue ctermfg=Green
 let mapleader=","
 
+tnoremap <Esc> <C-\><C-n>
 
 set timeout timeoutlen=1500
 
@@ -38,12 +39,17 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
-Plug 'm4xshen/autoclose.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
+
+lua << EOF
+require("nvim-autopairs").setup {}
+EOF
+
 
 lua require('init')
 

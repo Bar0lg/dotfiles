@@ -1,0 +1,6 @@
+#!/bin/bash
+mkdir -p Day"$1"
+cd Day"$1"
+touch input.txt
+touch example.txt
+cp -r ../../basics/* ./

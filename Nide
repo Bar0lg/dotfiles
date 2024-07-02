@@ -1,0 +1,2 @@
+#!/bin/bash
+nvim  -S ~/.config/nvim/IDESession.vim -c "cd $(pwd)" -c "e ."
