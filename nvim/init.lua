@@ -20,6 +20,7 @@ set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
+set ph=5
 hi Normal ctermbg=none
 hi StatusLine ctermbg=Blue ctermfg=Green
 let mapleader=","
@@ -29,12 +30,13 @@ tnoremap <Esc> <C-\><C-n>
 
 require "opts"
 require "launch"
+spec("plugin.treesitter")
 spec("plugin.colorscheme")
 spec("plugin.telescope")
 spec("plugin.fugitive")
 spec("plugin.lsp-zero")
 spec("plugin.mason")
-spec("plugin.treesitter")
+spec("plugin.autopairs")
 require "plugin.lazy"
 require "keymaps"
 
