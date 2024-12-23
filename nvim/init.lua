@@ -1,3 +1,4 @@
+vim.cmd([[
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
@@ -19,37 +20,27 @@ set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
-" set spell                 " enable spell check (may need to download language package)
-" set noswapfile            " disable creating swap file
-" set backupdir=~/.cache/vim " Directory to store backup files.
 hi Normal ctermbg=none
 hi StatusLine ctermbg=Blue ctermfg=Green
 let mapleader=","
 
 tnoremap <Esc> <C-\><C-n>
+]])
 
-set timeout timeoutlen=1500
+require "opts"
+require "launch"
+spec("plugin.colorscheme")
+spec("plugin.telescope")
+spec("plugin.fugitive")
+spec("plugin.lsp-zero")
+spec("plugin.mason")
+spec("plugin.treesitter")
+require "plugin.lazy"
+require "keymaps"
 
-
-call plug#begin()
-
-Plug 'Mofiqul/dracula.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdcommenter'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
-Plug 'nvim-lualine/lualine.nvim'
-" If you want to have icons in your statusline choose one of these
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'windwp/nvim-autopairs'
-
-call plug#end()
-
-lua << EOF
-require("nvim-autopairs").setup {}
-EOF
-
-
-lua require('init')
-
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.cmd("colorscheme duskfox")
